@@ -30,6 +30,14 @@ def Gauss(array):
 			array[i-1][j-1] = (int(new_value),int(new_value),int(new_value))
 	return array
 
+def subtract_matricies(m1, m2):
+	return_matrix = copy.deepcopy(m1)
+	for i in range(len(m1)):
+		for j in range(len(m1[0])):
+			# print m1[i][j], m2[i][j], (m1[i][j] - m2[i][j])
+			return_matrix[i][j] = (m1[i][j] - m2[i][j])
+	return return_matrix
+
 sharp_image = Image.open('squares.png')
 sharp_image_matrix = numpy.array(sharp_image)
 for i in range(1):
@@ -41,3 +49,13 @@ alpha = 1
 first = numpy.array(Image.open('blurred_image.png'))
 guess_image = numpy.empty_like(first)
 guess_image[:] = first
+
+for i in range(1):
+	guess_image = Gauss(guess_image)
+
+	test = Image.fromarray(guess_image)
+	test.save('test.png')
+
+	# inner_term = subtract_matricies(first,guess_image)
+	# test = Image.fromarray(inner_term)
+	# test.save('test.png')
